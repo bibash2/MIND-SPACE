@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #050810;
+  --bg-secondary: #0a101a;
+  --bg-card: #111a2a;
+  --bg-card-hover: #162236;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --text-primary: #eef2f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #5c6b86;
+  --accent-sage: #7cb87c;
+  --accent-sage-light: #b8d4b8;
+  --accent-teal: #5ee4b8;
+  --accent-amber: #fbbf5c;
+  --accent-rose: #f08080;
+  --glow-sage: rgba(124, 184, 124, 0.18);
+  --glow-teal: rgba(94, 228, 184, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: #030508;
+}
+
+body {
+  background-color: #030508;
+  color: var(--text-primary);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* Selection */
+::selection { background: var(--glow-sage); color: var(--accent-sage-light); }
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Glass card — tinted slate, no flat white */
+.glass {
+  background: linear-gradient(
+    145deg,
+    rgba(18, 28, 44, 0.82) 0%,
+    rgba(12, 20, 34, 0.75) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 12px 40px -12px rgba(0, 0, 0, 0.45);
+}
+
+.glass-hover:hover {
+  background: linear-gradient(
+    145deg,
+    rgba(24, 36, 54, 0.9) 0%,
+    rgba(16, 26, 42, 0.85) 100%
+  );
+  border-color: rgba(94, 228, 184, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(94, 228, 184, 0.06) inset,
+    0 16px 48px -16px rgba(0, 0, 0, 0.5);
+  transition: all 0.22s ease;
+}
+
+/* Glow effects */
+.glow-sage {
+  box-shadow: 0 0 40px var(--glow-sage);
+}
+
+.glow-teal {
+  box-shadow: 0 0 40px var(--glow-teal);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #b8d4b8 0%, #5ee4b8 45%, #7dd3c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Full-page atmosphere (use on fixed underlay) */
+.app-atmosphere {
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(94, 228, 184, 0.11) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 95% 8%, rgba(124, 184, 124, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 5% 95%, rgba(72, 110, 180, 0.1) 0%, transparent 48%),
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(232, 112, 112, 0.04) 0%, transparent 45%),
+    linear-gradient(180deg, #030508 0%, #060b14 30%, #0a121c 70%, #0c1624 100%);
+}
+
+/* Subtle film grain — breaks up flat color */
+.app-noise {
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Legacy class — keep for compatibility; now deep slate + soft glow */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 90% 65% at 45% -10%, rgba(94, 228, 184, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 100% 15%, rgba(124, 184, 124, 0.07) 0%, transparent 50%),
+    linear-gradient(165deg, #04070d 0%, #0a121c 100%);
+}
+
+/* Stagger animation utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Textarea override */
+textarea {
+  resize: none;
+  outline: none;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+
+/* Sentiment badge colors */
+.badge-positive {
+  background: rgba(77, 217, 172, 0.12);
+  color: #4dd9ac;
+  border: 1px solid rgba(77, 217, 172, 0.2);
+}
+.badge-neutral {
+  background: rgba(139, 154, 181, 0.12);
+  color: #8b9ab5;
+  border: 1px solid rgba(139, 154, 181, 0.2);
+}
+.badge-negative {
+  background: rgba(232, 112, 112, 0.12);
+  color: #e87070;
+  border: 1px solid rgba(232, 112, 112, 0.2);
+}
+
+/* Mood bar track */
+.mood-track {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mood-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s ease;
+}
